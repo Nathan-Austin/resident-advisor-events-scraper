@@ -1,0 +1,3062 @@
+Type: __Directive - Kind: OBJECT
+Description: A Directive provides a way to describe alternate runtime execution and type validation behavior in a GraphQL document.
+
+In some cases, you need to provide options to alter GraphQL's execution behavior in ways field arguments will not suffice, such as conditionally including or skipping a field. Directives provide this by describing additional information to the executor.
+Fields:
+  - name - None
+  - description - None
+  - locations - None
+  - args - None
+  - isRepeatable - None
+--------------------------------------------------------------------------------
+Type: __DirectiveLocation - Kind: ENUM
+Description: A Directive can be adjacent to many parts of the GraphQL language, a __DirectiveLocation describes one such possible adjacencies.
+No fields information available.
+--------------------------------------------------------------------------------
+Type: __EnumValue - Kind: OBJECT
+Description: One possible value for a given Enum. Enum values are unique values, not a placeholder for a string or numeric value. However an Enum value is returned in a JSON response as a string.
+Fields:
+  - name - None
+  - description - None
+  - isDeprecated - None
+  - deprecationReason - None
+--------------------------------------------------------------------------------
+Type: __Field - Kind: OBJECT
+Description: Object and Interface types are described by a list of Fields, each of which has a name, potentially a list of arguments, and a return type.
+Fields:
+  - name - None
+  - description - None
+  - args - None
+  - type - None
+  - isDeprecated - None
+  - deprecationReason - None
+--------------------------------------------------------------------------------
+Type: __InputValue - Kind: OBJECT
+Description: Arguments provided to Fields or Directives and the input fields of an InputObject are represented as Input Values which describe their type and optionally a default value.
+Fields:
+  - name - None
+  - description - None
+  - type - None
+  - defaultValue - A GraphQL-formatted string representing the default value for this input value.
+  - isDeprecated - None
+  - deprecationReason - None
+--------------------------------------------------------------------------------
+Type: __Schema - Kind: OBJECT
+Description: A GraphQL Schema defines the capabilities of a GraphQL server. It exposes all available types and directives on the server, as well as the entry points for query, mutation, and subscription operations.
+Fields:
+  - description - None
+  - types - A list of all types supported by this server.
+  - queryType - The type that query operations will be rooted at.
+  - mutationType - If this server supports mutation, the type that mutation operations will be rooted at.
+  - subscriptionType - If this server support subscription, the type that subscription operations will be rooted at.
+  - directives - A list of all directives supported by this server.
+--------------------------------------------------------------------------------
+Type: __Type - Kind: OBJECT
+Description: The fundamental unit of any GraphQL Schema is the type. There are many kinds of types in GraphQL as represented by the `__TypeKind` enum.
+
+Depending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name and description, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.
+Fields:
+  - kind - None
+  - name - None
+  - description - None
+  - fields - None
+  - interfaces - None
+  - possibleTypes - None
+  - enumValues - None
+  - inputFields - None
+  - ofType - None
+  - specifiedByURL - `specifiedByURL` may return a String (in the form of a URL) for custom scalars, otherwise it will return `null`.
+--------------------------------------------------------------------------------
+Type: __TypeKind - Kind: ENUM
+Description: An enum describing what kind of type a given `__Type` is.
+No fields information available.
+--------------------------------------------------------------------------------
+Type: DateTime - Kind: SCALAR
+Description: The `DateTime` scalar represents an ISO-8601 compliant date time type.
+No fields information available.
+--------------------------------------------------------------------------------
+Type: AdTargeting - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - userId - None
+  - campaignCode - None
+  - targetId - None
+--------------------------------------------------------------------------------
+Type: Area - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - name - None
+  - urlName - None
+  - parentId - None
+  - blurb - None
+  - population - None
+  - ianaTimeZone - None
+  - country - None
+  - parent - None
+  - countryId - None
+  - isCountry - None
+  - subregion - None
+  - eventsCount - None
+  - venuesCount - None
+  - siblings - None
+  - guideImageUrl - None
+--------------------------------------------------------------------------------
+Type: ArtistBio - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - blurb - None
+  - content - None
+  - discography - None
+--------------------------------------------------------------------------------
+Type: Artist - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - countryId - None
+  - name - None
+  - firstName - None
+  - lastName - None
+  - areaId - None
+  - urlSafeName - None
+  - bookingDetails - None
+  - aliases - None
+  - pronouns - None
+  - area - None
+  - country - None
+  - facebook - None
+  - instagram - None
+  - twitter - None
+  - soundcloud - None
+  - discogs - None
+  - bandcamp - None
+  - website - None
+  - status - None
+  - listingItemId - None
+  - index - None
+  - biography - None
+  - residentCountry - None
+  - image - None
+  - coverImage - None
+  - contentUrl - None
+  - events - None
+  - features - None
+  - reviews - None
+  - news - None
+  - exchanges - None
+  - podcasts - None
+  - labels - None
+  - followerCount - None
+  - isFollowing - None
+  - relatedArtists - None
+  - firstEvent - None
+  - regionsMostPlayed - None
+  - venuesMostPlayed - None
+  - upcomingEventsCount - None
+  - viewCount - None
+--------------------------------------------------------------------------------
+Type: AudioService - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - name - None
+--------------------------------------------------------------------------------
+Type: Country - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - name - None
+  - urlCode - None
+  - isoCode - None
+  - topCountry - None
+  - order - None
+  - currency - None
+  - areas - None
+  - requiresCookieConsent - None
+--------------------------------------------------------------------------------
+Type: Currency - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - title - None
+  - code - None
+  - symbol - None
+  - exponent - None
+--------------------------------------------------------------------------------
+Type: Email - Kind: OBJECT
+Description: None
+Fields:
+  - email - None
+--------------------------------------------------------------------------------
+Type: Event - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - title - None
+  - date - None
+  - startTime - None
+  - endTime - None
+  - time - None
+  - cost - None
+  - isFestival - None
+  - dateUpdated - None
+  - content - None
+  - minimumAge - None
+  - isTicketed - None
+  - hideFromListings - None
+  - index - None
+  - live - None
+  - newEventForm - None
+  - datePosted - None
+  - submissionSource - None
+  - ticketFeeType - None
+  - approvalStatus - None
+  - visibility - None
+  - area - None
+  - country - None
+  - attending - None
+  - flyerFront - None
+  - flyerBack - None
+  - embargoDate - None
+  - listingItemId - None
+  - autoApproved - None
+  - venue - None
+  - pick - None
+  - promotionalLinks - None
+  - isInterested - None
+  - contentUrl - None
+  - tracking - None
+  - userTicketsCount - None
+  - admin - None
+  - tickets - None
+  - viewCount - None
+  - resaleActive - None
+  - userOrders - None
+  - isMultiDayEvent - None
+  - queueItEnabled - None
+  - status - None
+  - revisions - None
+  - availableTicketFeeTypes - None
+  - totalRevenue - None
+  - totalTicketsSold - None
+  - totalTicketAllocation - None
+  - totalPossibleRevenue - None
+  - totalTicketsInResale - None
+  - totalTicketsSoldInResale - None
+  - additionalRevenueFromResale - None
+  - totalServiceFeeDiscount - None
+  - promotersToBePaid - None
+  - promoterRoles - None
+  - isTicketNotificationsEnabled - None
+  - canSubscribeToTicketNotifications - None
+  - canSendTicketNotifications - None
+  - hasPromotersSet - None
+  - ticketNotificationSubscriptionsCount - None
+  - images - None
+  - artists - None
+  - excludedArtists - None
+  - lineup - None
+  - promoters - None
+  - genres - None
+  - playerLinks - None
+  - childEvents - None
+  - secretVenueReveal - None
+  - setTimes - None
+  - hasSecretVenue - None
+  - queues - None
+  - ticketingSystem - None
+--------------------------------------------------------------------------------
+Type: EventRevision - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - status - None
+  - versionDate - None
+  - event - None
+  - user - None
+  - userApproved - None
+--------------------------------------------------------------------------------
+Type: EventPick - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - blurb - None
+  - author - None
+--------------------------------------------------------------------------------
+Type: Exchange - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - date - None
+  - title - None
+  - blurb - None
+  - content - None
+  - fileSize - None
+  - duration - None
+  - streamingUrl - None
+  - keywords - None
+  - tracklist - None
+  - isTheHour - None
+  - imageUrl - None
+  - contentUrl - None
+  - artist - None
+--------------------------------------------------------------------------------
+Type: Feature - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - date - None
+  - title - None
+  - blurb - None
+  - featured - None
+  - photoCredit - None
+  - backgroundColor - None
+  - linkColor - None
+  - textColor - None
+  - type - None
+  - locale - None
+  - tech - None
+  - author - None
+  - content - None
+  - youtubeId - None
+  - imageUrl - None
+  - imageListing - None
+  - listingItemId - None
+  - index - None
+  - images - None
+  - contentUrl - None
+  - series - None
+  - artists - None
+  - imageListingUrl - None
+  - localised - None
+--------------------------------------------------------------------------------
+Type: FeatureHeaderImage - Kind: OBJECT
+Description: None
+Fields:
+  - featureId - None
+  - type - None
+  - imageUrl - None
+--------------------------------------------------------------------------------
+Type: FeatureSeries - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - title - None
+  - blurb - None
+  - seriesRef - None
+  - imageUrl - None
+  - contentUrl - None
+  - features - None
+--------------------------------------------------------------------------------
+Type: Genre - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - name - None
+  - slug - None
+  - contentUrl - None
+--------------------------------------------------------------------------------
+Type: GroupedEvents - Kind: OBJECT
+Description: None
+Fields:
+  - date - None
+  - events - None
+--------------------------------------------------------------------------------
+Type: IPSItem - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - title - None
+  - blurb - None
+  - contentUrl - None
+  - datePosted - None
+  - language - None
+  - textColor - None
+  - imageUrl - None
+  - imageUrlMobile - None
+--------------------------------------------------------------------------------
+Type: Label - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - name - None
+  - imageLarge - None
+  - blurb - None
+  - live - None
+  - dateEstablished - None
+  - link - None
+  - discogs - None
+  - facebook - None
+  - twitter - None
+  - soundcloud - None
+  - area - None
+  - listingItemId - None
+  - index - None
+  - imageUrl - None
+  - contentUrl - None
+  - reviews - None
+  - followerCount - None
+  - artists - None
+  - isFollowing - None
+--------------------------------------------------------------------------------
+Type: LocaleDto - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - ref - None
+  - title - None
+  - localTitle - None
+--------------------------------------------------------------------------------
+Type: Microsite - Kind: OBJECT
+Description: None
+Fields:
+  - title - None
+  - subNavType - None
+  - contentUrl - None
+  - feature - None
+--------------------------------------------------------------------------------
+Type: News - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - headline - None
+  - content - None
+  - live - None
+  - date - None
+  - title - None
+  - blurb - None
+  - language - None
+  - linkName - None
+  - link - None
+  - artist - None
+  - country - None
+  - imageUrl - None
+  - areaId - None
+  - listingItemId - None
+  - index - None
+  - contentUrl - None
+  - author - None
+  - events - None
+  - playerLinks - None
+  - type - None
+  - localised - None
+--------------------------------------------------------------------------------
+Type: Invoice - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - invoiceNumber - None
+  - periodStartDate - None
+  - country - None
+  - currency - None
+  - promoterId - None
+  - periodEndDate - None
+  - invoiceDate - None
+  - countryId - None
+  - currencyId - None
+  - lineItems - None
+--------------------------------------------------------------------------------
+Type: InvoiceLineItem - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - feeType - None
+  - feeValue - None
+  - invoiceNumber - None
+--------------------------------------------------------------------------------
+Type: Order - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - rAOrderNumber - None
+  - currency - None
+  - quantity - None
+  - total - None
+  - cart - None
+--------------------------------------------------------------------------------
+Type: Cart - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - datePurchased - None
+  - comments - None
+  - cartItems - None
+--------------------------------------------------------------------------------
+Type: CartItem - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - quantity - None
+  - promoId - None
+  - refund - None
+  - ticket - None
+--------------------------------------------------------------------------------
+Type: PlayerLink - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - sourceId - None
+  - audioService - None
+--------------------------------------------------------------------------------
+Type: PodcastContent - Kind: OBJECT
+Description: None
+Fields:
+  - blurb - None
+  - content - None
+  - podcastId - None
+  - language - None
+--------------------------------------------------------------------------------
+Type: Podcast - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - date - None
+  - title - None
+  - live - None
+  - fileSize - None
+  - duration - None
+  - keywords - None
+  - tracklist - None
+  - archived - None
+  - content - None
+  - blurb - None
+  - imageUrl - None
+  - streamingUrl - None
+  - translation - None
+  - contentUrl - None
+  - artist - None
+--------------------------------------------------------------------------------
+Type: ProfileManager - Kind: OBJECT
+Description: None
+Fields:
+  - hasArtists - None
+  - hasPromoters - None
+  - hasLabels - None
+--------------------------------------------------------------------------------
+Type: Promoter - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - name - None
+  - email - None
+  - blurb - None
+  - isFestival - None
+  - live - None
+  - hasCover - None
+  - hasTicketAccess - None
+  - venueId - None
+  - paymentExclusionType - None
+  - area - None
+  - website - None
+  - facebook - None
+  - instagram - None
+  - twitter - None
+  - youtube - None
+  - logoLarge - None
+  - imageFeature - None
+  - areaId - None
+  - termsAgreement - None
+  - listingItemId - None
+  - index - None
+  - coverUrl - None
+  - logoUrl - None
+  - contentUrl - None
+  - news - None
+  - invoices - None
+  - events - None
+  - followerCount - None
+  - tracking - None
+  - upcomingEventsCount - None
+  - isFollowing - None
+  - user - None
+  - features - None
+  - socialMediaLinks - None
+--------------------------------------------------------------------------------
+Type: PromotionalLink - Kind: OBJECT
+Description: None
+Fields:
+  - title - None
+  - url - None
+--------------------------------------------------------------------------------
+Type: PushNotification - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - title - None
+  - app - None
+  - isSubscribed - None
+--------------------------------------------------------------------------------
+Type: Review - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - language - None
+  - live - None
+  - date - None
+  - title - None
+  - blurb - None
+  - content - None
+  - tracklist - None
+  - player - None
+  - label - None
+  - releaseDate - None
+  - type - None
+  - recommended - None
+  - catalogue - None
+  - author - None
+  - listingItemId - None
+  - index - None
+  - contentUrl - None
+  - imageUrl - None
+  - labels - None
+  - genres - None
+  - event - None
+  - artists - None
+  - playerLinks - None
+  - localised - None
+  - next - None
+  - previous - None
+--------------------------------------------------------------------------------
+Type: Search - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - value - None
+  - areaName - None
+  - countryId - None
+  - countryName - None
+  - countryCode - None
+  - score - None
+  - contentUrl - None
+  - imageUrl - None
+  - searchType - None
+  - date - None
+  - clubName - None
+  - clubContentUrl - None
+--------------------------------------------------------------------------------
+Type: ShareCount - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - facebook - None
+--------------------------------------------------------------------------------
+Type: SocialMediaLink - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - platform - None
+  - link - None
+--------------------------------------------------------------------------------
+Type: SocialMediaPlatformType - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: Ticket - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - title - None
+  - priceRetail - None
+  - dateCreated - None
+  - visible - None
+  - validType - None
+  - priceWholesale - None
+  - totalAllocated - None
+  - totalSold - None
+  - totalPendingResale - None
+  - status - None
+  - resaleQueueEnabled - None
+  - currency - None
+  - dependency - None
+  - onSaleFrom - None
+  - onSaleUntil - None
+  - totalReserved - None
+  - resellAsTicketTypeId - None
+  - bookingFee - None
+  - isAddOn - None
+  - totalRevenue - None
+  - totalPossibleRevenue - None
+  - event - None
+  - depositDependency - None
+  - isStoppedSales - None
+--------------------------------------------------------------------------------
+Type: TicketTierInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: Track - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - title - None
+--------------------------------------------------------------------------------
+Type: Tracking - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - code - None
+  - name - None
+  - event - None
+--------------------------------------------------------------------------------
+Type: PromoterTracking - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - code - None
+  - name - None
+  - event - None
+  - authToken - None
+--------------------------------------------------------------------------------
+Type: User - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - live - None
+  - username - None
+  - contributor - None
+  - dateRegistered - None
+  - about - None
+  - dateOfBirth - None
+  - firstName - None
+  - lastName - None
+  - apiKey - None
+  - email - None
+  - registrationSource - None
+  - area - None
+  - twitter - None
+  - website - None
+  - blog - None
+  - flickr - None
+  - youtube - None
+  - profileImage - None
+  - pronouns - None
+  - selectorsSavedArtists - None
+  - selectorsSavedArtistList - None
+  - selectorsSavedArtistLists - None
+  - name - None
+  - country - None
+  - image - None
+  - locale - None
+  - events - None
+  - adTargeting - None
+  - managedEvents - None
+  - managedProfiles - None
+  - managedArtists - None
+  - managedLabels - None
+  - managedPromoters - None
+  - promoterContactPermissions - None
+  - orders - None
+  - hasBetaAccess - None
+  - newMessagesCount - None
+  - newEventRevisionsCount - None
+  - followedProfilesCount - None
+  - permissions - None
+  - marketingCommunications - None
+  - isSubscribedToAllDefaultMarketingCommunications - None
+  - followedProfiles - None
+  - personalizedEvents - None
+  - personalizedEventListings - None
+  - externalArtists - None
+  - iterableJwtToken - None
+--------------------------------------------------------------------------------
+Type: UserAppSettings - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - deviceId - None
+  - devicePushToken - None
+  - dateFirstLoggedIn - None
+  - dateLastOnline - None
+  - app - None
+  - appVersion - None
+  - platformId - None
+  - platformOS - None
+  - device - None
+--------------------------------------------------------------------------------
+Type: ConvertGuestUserInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: UserRegisterInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: UserRegisterAppInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: UserRegisteredApp - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - username - None
+  - email - None
+  - apiKey - None
+  - idToken - None
+  - refreshToken - None
+  - area - None
+--------------------------------------------------------------------------------
+Type: UserAppSettingsInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: UserPushSubscriptionInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: Venue - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - live - None
+  - capacity - None
+  - address - None
+  - phone - None
+  - raSays - None
+  - tba - None
+  - isClosed - None
+  - area - None
+  - country - None
+  - website - None
+  - name - None
+  - listingItemId - None
+  - index - None
+  - blurb - None
+  - photo - None
+  - contentUrl - None
+  - logoUrl - None
+  - isFollowing - None
+  - news - None
+  - followerCount - None
+  - eventCountThisYear - None
+  - topArtists - None
+  - events - None
+--------------------------------------------------------------------------------
+Type: Listing - Kind: OBJECT
+Description: None
+Fields:
+  - aggregations - None
+  - totalResults - None
+  - data - None
+--------------------------------------------------------------------------------
+Type: IListingItem - Kind: INTERFACE
+Description: None
+Fields:
+  - index - None
+--------------------------------------------------------------------------------
+Type: ListingItem - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - index - None
+--------------------------------------------------------------------------------
+Type: FilterInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: Aggregation - Kind: OBJECT
+Description: None
+Fields:
+  - values - None
+  - type - None
+--------------------------------------------------------------------------------
+Type: FilterValue - Kind: OBJECT
+Description: None
+Fields:
+  - name - None
+  - value - None
+--------------------------------------------------------------------------------
+Type: PitchInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: EventInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: TaggedLineup - Kind: OBJECT
+Description: None
+Fields:
+  - lineup - None
+  - artists - None
+--------------------------------------------------------------------------------
+Type: EventImage - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - alt - None
+  - type - None
+  - filename - None
+  - crop - None
+--------------------------------------------------------------------------------
+Type: WebsiteInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SecureSanitizedHtml - Kind: SCALAR
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SanitizedHtml - Kind: SCALAR
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: StrippedHtml - Kind: SCALAR
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: LocalDateTime - Kind: SCALAR
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: ImageInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: ImageCropInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: EventRevisionUser - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - username - None
+--------------------------------------------------------------------------------
+Type: EventRevisionEvent - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - title - None
+  - date - None
+  - startTime - None
+  - endTime - None
+  - time - None
+  - cost - None
+  - isFestival - None
+  - dateUpdated - None
+  - content - None
+  - minimumAge - None
+  - isTicketed - None
+  - embargoDate - None
+  - hideFromListings - None
+  - index - None
+  - live - None
+  - newEventForm - None
+  - visibility - None
+  - area - None
+  - country - None
+  - artists - None
+  - eventPromoters - None
+  - images - None
+  - playerLinks - None
+  - eventGenres - None
+  - attending - None
+  - flyerFront - None
+  - flyerBack - None
+  - listingItemId - None
+  - datePosted - None
+  - submissionSource - None
+  - autoApproved - None
+  - ticketFeeType - None
+  - approvalStatus - None
+  - venue - None
+  - pick - None
+  - promotionalLinks - None
+  - isInterested - None
+  - contentUrl - None
+  - tracking - None
+  - userTicketsCount - None
+  - admin - None
+  - tickets - None
+  - viewCount - None
+  - resaleActive - None
+  - userOrders - None
+  - isMultiDayEvent - None
+  - queueItEnabled - None
+  - status - None
+  - revisions - None
+  - availableTicketFeeTypes - None
+  - totalRevenue - None
+  - totalTicketsSold - None
+  - totalTicketAllocation - None
+  - totalPossibleRevenue - None
+  - totalTicketsInResale - None
+  - totalTicketsSoldInResale - None
+  - additionalRevenueFromResale - None
+  - totalServiceFeeDiscount - None
+  - promotersToBePaid - None
+  - promoterRoles - None
+  - isTicketNotificationsEnabled - None
+  - canSubscribeToTicketNotifications - None
+  - canSendTicketNotifications - None
+  - hasPromotersSet - None
+  - ticketNotificationSubscriptionsCount - None
+  - lineup - None
+  - promoters - None
+  - genres - None
+--------------------------------------------------------------------------------
+Type: PlayerLinkInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: GenderDto - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - reference - None
+  - name - None
+  - dropdownRank - None
+--------------------------------------------------------------------------------
+Type: SecretVenueRevealInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SecretVenueReveal - Kind: OBJECT
+Description: None
+Fields:
+  - revealDate - None
+  - eventId - None
+  - message - None
+  - emailOnSubmit - None
+--------------------------------------------------------------------------------
+Type: EventArtist - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: TicketTierStatus - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: UpdateUserMarketingCommunicationsInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: IterableMessageTypeDto - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - messageTypeId - None
+  - communicationId - None
+--------------------------------------------------------------------------------
+Type: MarketingCommunicationDto - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - reference - None
+  - iterableMessageType - None
+--------------------------------------------------------------------------------
+Type: PromoterContactPermission - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - dateAccepted - None
+  - promoter - None
+--------------------------------------------------------------------------------
+Type: EventListings - Kind: OBJECT
+Description: None
+Fields:
+  - data - None
+  - totalResults - None
+  - filterOptions - None
+--------------------------------------------------------------------------------
+Type: EventListing - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - listingDate - None
+  - event - None
+--------------------------------------------------------------------------------
+Type: TicketFeeType - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: PaymentExclusionType - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: FilterOptions - Kind: OBJECT
+Description: None
+Fields:
+  - genre - None
+  - eventType - None
+--------------------------------------------------------------------------------
+Type: GenreFilterOption - Kind: OBJECT
+Description: None
+Fields:
+  - value - None
+  - count - None
+  - label - None
+--------------------------------------------------------------------------------
+Type: EventTypeFilterOption - Kind: OBJECT
+Description: None
+Fields:
+  - value - None
+  - count - None
+--------------------------------------------------------------------------------
+Type: PromoterRoles - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - promoterId - None
+  - eventPromoterRole - None
+--------------------------------------------------------------------------------
+Type: PromoterInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: CartComment - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - comment - None
+  - dateCreated - None
+--------------------------------------------------------------------------------
+Type: ExternalMusicProvider - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: EventQueue - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - displayName - None
+  - startTime - None
+  - endTime - None
+--------------------------------------------------------------------------------
+Type: TicketingSystem - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: IPaymentDetails - Kind: INTERFACE
+Description: None
+Fields:
+  - token - None
+  - status - None
+  - type - None
+  - createdOn - None
+  - transferMethodCountry - None
+  - transferMethodCurrency - None
+--------------------------------------------------------------------------------
+Type: Address - Kind: OBJECT
+Description: None
+Fields:
+  - addressLine1 - None
+  - addressLine2 - None
+  - city - None
+  - stateProvince - None
+  - country - None
+  - postalCode - None
+--------------------------------------------------------------------------------
+Type: BankAccount - Kind: OBJECT
+Description: None
+Fields:
+  - verificationStatus - None
+  - type - None
+  - bankAccountId - None
+  - bankAccountPurpose - None
+  - bankId - None
+  - bankName - None
+  - branchId - None
+  - branchName - None
+  - branchAddressLine1 - None
+  - branchAddressLine2 - None
+  - branchCity - None
+  - branchStateProvince - None
+  - branchPostalCode - None
+  - branchCountry - None
+  - firstName - None
+  - middleName - None
+  - lastName - None
+  - addressLine1 - None
+  - addressLine2 - None
+  - city - None
+  - stateProvince - None
+  - postalCode - None
+  - country - None
+  - countryOfBirth - None
+  - countryOfNationality - None
+  - dateOfBirth - None
+  - employerId - None
+  - phoneNumber - None
+  - mobileNumber - None
+  - driversLicenseId - None
+  - passportId - None
+  - governmentId - None
+  - governmentIdType - None
+  - businessType - None
+  - businessName - None
+  - businessRegistrationId - None
+  - businessRegistrationStateProvince - None
+  - businessRegistrationCountry - None
+  - intermediaryBankAccountId - None
+  - intermediaryBankAddressLine1 - None
+  - intermediaryBankAddressLine2 - None
+  - intermediaryBankCity - None
+  - intermediaryBankCountry - None
+  - intermediaryBankId - None
+  - intermediaryBankName - None
+  - intermediaryBankPostalCode - None
+  - intermediaryBankStateProvince - None
+  - wireInstructions - None
+  - token - None
+  - status - None
+  - createdOn - None
+  - transferMethodCountry - None
+  - transferMethodCurrency - None
+--------------------------------------------------------------------------------
+Type: PayPalAccount - Kind: OBJECT
+Description: None
+Fields:
+  - type - None
+  - email - None
+  - token - None
+  - status - None
+  - createdOn - None
+  - transferMethodCountry - None
+  - transferMethodCurrency - None
+--------------------------------------------------------------------------------
+Type: PaymentUser - Kind: OBJECT
+Description: None
+Fields:
+  - paymentDetails - None
+  - promoterId - None
+  - userToken - None
+  - transferMethodToken - None
+  - profileType - None
+  - businessName - None
+  - address - None
+  - dateOfBirth - None
+  - firstName - None
+  - lastName - None
+--------------------------------------------------------------------------------
+Type: VenmoAccount - Kind: OBJECT
+Description: None
+Fields:
+  - type - None
+  - accountId - None
+  - token - None
+  - status - None
+  - createdOn - None
+  - transferMethodCountry - None
+  - transferMethodCurrency - None
+--------------------------------------------------------------------------------
+Type: AddressInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: PaymentInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: PaymentUserInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: ProfileType - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: TransferMethodType - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: AdminUser - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - username - None
+  - firstname - None
+  - lastname - None
+--------------------------------------------------------------------------------
+Type: HelpScoutBeacon - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - created_at - None
+  - updated_at - None
+  - name - None
+  - beaconId - None
+  - published_at - None
+  - helpScoutConfigs - None
+  - customFields - None
+--------------------------------------------------------------------------------
+Type: HelpScoutBeaconAggregator - Kind: OBJECT
+Description: None
+Fields:
+  - count - None
+  - totalCount - None
+--------------------------------------------------------------------------------
+Type: HelpScoutBeaconConnection - Kind: OBJECT
+Description: None
+Fields:
+  - values - None
+  - groupBy - None
+  - aggregate - None
+--------------------------------------------------------------------------------
+Type: HelpScoutBeaconConnectionBeaconId - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: HelpScoutBeaconConnectionCreated_at - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: HelpScoutBeaconConnectionId - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: HelpScoutBeaconConnectionName - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: HelpScoutBeaconConnectionPublished_at - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: HelpScoutBeaconConnectionUpdated_at - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: HelpScoutBeaconGroupBy - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - created_at - None
+  - updated_at - None
+  - name - None
+  - beaconId - None
+  - published_at - None
+--------------------------------------------------------------------------------
+Type: HelpScoutConfig - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - created_at - None
+  - updated_at - None
+  - url - None
+  - screen - None
+  - helpScoutBeacon - None
+  - published_at - None
+--------------------------------------------------------------------------------
+Type: HelpScoutConfigAggregator - Kind: OBJECT
+Description: None
+Fields:
+  - count - None
+  - totalCount - None
+--------------------------------------------------------------------------------
+Type: HelpScoutConfigConnection - Kind: OBJECT
+Description: None
+Fields:
+  - values - None
+  - groupBy - None
+  - aggregate - None
+--------------------------------------------------------------------------------
+Type: HelpScoutConfigConnectionCreated_at - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: HelpScoutConfigConnectionHelpScoutBeacon - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: HelpScoutConfigConnectionId - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: HelpScoutConfigConnectionPublished_at - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: HelpScoutConfigConnectionScreen - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: HelpScoutConfigConnectionUpdated_at - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: HelpScoutConfigConnectionUrl - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: HelpScoutConfigGroupBy - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - created_at - None
+  - updated_at - None
+  - url - None
+  - screen - None
+  - helpScoutBeacon - None
+  - published_at - None
+--------------------------------------------------------------------------------
+Type: HelpScoutCustomFields - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - created_at - None
+  - updated_at - None
+  - fieldName - None
+  - fieldId - None
+  - published_at - None
+--------------------------------------------------------------------------------
+Type: HelpScoutCustomFieldsAggregator - Kind: OBJECT
+Description: None
+Fields:
+  - count - None
+  - totalCount - None
+  - sum - None
+  - avg - None
+  - min - None
+  - max - None
+--------------------------------------------------------------------------------
+Type: HelpScoutCustomFieldsAggregatorAvg - Kind: OBJECT
+Description: None
+Fields:
+  - fieldId - None
+--------------------------------------------------------------------------------
+Type: HelpScoutCustomFieldsAggregatorMax - Kind: OBJECT
+Description: None
+Fields:
+  - fieldId - None
+--------------------------------------------------------------------------------
+Type: HelpScoutCustomFieldsAggregatorMin - Kind: OBJECT
+Description: None
+Fields:
+  - fieldId - None
+--------------------------------------------------------------------------------
+Type: HelpScoutCustomFieldsAggregatorSum - Kind: OBJECT
+Description: None
+Fields:
+  - fieldId - None
+--------------------------------------------------------------------------------
+Type: HelpScoutCustomFieldsConnection - Kind: OBJECT
+Description: None
+Fields:
+  - values - None
+  - groupBy - None
+  - aggregate - None
+--------------------------------------------------------------------------------
+Type: HelpScoutCustomFieldsConnectionCreated_at - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: HelpScoutCustomFieldsConnectionFieldId - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: HelpScoutCustomFieldsConnectionFieldName - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: HelpScoutCustomFieldsConnectionId - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: HelpScoutCustomFieldsConnectionPublished_at - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: HelpScoutCustomFieldsConnectionUpdated_at - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: HelpScoutCustomFieldsGroupBy - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - created_at - None
+  - updated_at - None
+  - fieldName - None
+  - fieldId - None
+  - published_at - None
+--------------------------------------------------------------------------------
+Type: I18NLocale - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - created_at - None
+  - updated_at - None
+  - name - None
+  - code - None
+--------------------------------------------------------------------------------
+Type: MetadataOverride - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - created_at - None
+  - updated_at - None
+  - title - None
+  - description - None
+  - url - None
+  - published_at - None
+--------------------------------------------------------------------------------
+Type: MetadataOverrideAggregator - Kind: OBJECT
+Description: None
+Fields:
+  - count - None
+  - totalCount - None
+--------------------------------------------------------------------------------
+Type: MetadataOverrideConnection - Kind: OBJECT
+Description: None
+Fields:
+  - values - None
+  - groupBy - None
+  - aggregate - None
+--------------------------------------------------------------------------------
+Type: MetadataOverrideConnectionCreated_at - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: MetadataOverrideConnectionDescription - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: MetadataOverrideConnectionId - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: MetadataOverrideConnectionPublished_at - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: MetadataOverrideConnectionTitle - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: MetadataOverrideConnectionUpdated_at - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: MetadataOverrideConnectionUrl - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: MetadataOverrideGroupBy - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - created_at - None
+  - updated_at - None
+  - title - None
+  - description - None
+  - url - None
+  - published_at - None
+--------------------------------------------------------------------------------
+Type: UploadFile - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - created_at - None
+  - updated_at - None
+  - name - None
+  - alternativeText - None
+  - caption - None
+  - width - None
+  - height - None
+  - formats - None
+  - hash - None
+  - ext - None
+  - mime - None
+  - size - None
+  - url - None
+  - previewUrl - None
+  - provider - None
+  - provider_metadata - None
+  - related - None
+--------------------------------------------------------------------------------
+Type: UploadFileAggregator - Kind: OBJECT
+Description: None
+Fields:
+  - count - None
+  - totalCount - None
+  - sum - None
+  - avg - None
+  - min - None
+  - max - None
+--------------------------------------------------------------------------------
+Type: UploadFileAggregatorAvg - Kind: OBJECT
+Description: None
+Fields:
+  - width - None
+  - height - None
+  - size - None
+--------------------------------------------------------------------------------
+Type: UploadFileAggregatorMax - Kind: OBJECT
+Description: None
+Fields:
+  - width - None
+  - height - None
+  - size - None
+--------------------------------------------------------------------------------
+Type: UploadFileAggregatorMin - Kind: OBJECT
+Description: None
+Fields:
+  - width - None
+  - height - None
+  - size - None
+--------------------------------------------------------------------------------
+Type: UploadFileAggregatorSum - Kind: OBJECT
+Description: None
+Fields:
+  - width - None
+  - height - None
+  - size - None
+--------------------------------------------------------------------------------
+Type: UploadFileConnection - Kind: OBJECT
+Description: None
+Fields:
+  - values - None
+  - groupBy - None
+  - aggregate - None
+--------------------------------------------------------------------------------
+Type: UploadFileConnectionAlternativeText - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: UploadFileConnectionCaption - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: UploadFileConnectionCreated_at - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: UploadFileConnectionExt - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: UploadFileConnectionFormats - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: UploadFileConnectionHash - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: UploadFileConnectionHeight - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: UploadFileConnectionId - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: UploadFileConnectionMime - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: UploadFileConnectionName - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: UploadFileConnectionPreviewUrl - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: UploadFileConnectionProvider - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: UploadFileConnectionProvider_metadata - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: UploadFileConnectionSize - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: UploadFileConnectionUpdated_at - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: UploadFileConnectionUrl - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: UploadFileConnectionWidth - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: UploadFileGroupBy - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - created_at - None
+  - updated_at - None
+  - name - None
+  - alternativeText - None
+  - caption - None
+  - width - None
+  - height - None
+  - formats - None
+  - hash - None
+  - ext - None
+  - mime - None
+  - size - None
+  - url - None
+  - previewUrl - None
+  - provider - None
+  - provider_metadata - None
+--------------------------------------------------------------------------------
+Type: UserPermissionsPasswordPayload - Kind: OBJECT
+Description: None
+Fields:
+  - ok - None
+--------------------------------------------------------------------------------
+Type: UsersPermissionsLoginPayload - Kind: OBJECT
+Description: None
+Fields:
+  - jwt - None
+  - user - None
+--------------------------------------------------------------------------------
+Type: UsersPermissionsMe - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - username - None
+  - email - None
+  - confirmed - None
+  - blocked - None
+  - role - None
+--------------------------------------------------------------------------------
+Type: UsersPermissionsMeRole - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - name - None
+  - description - None
+  - type - None
+--------------------------------------------------------------------------------
+Type: UsersPermissionsPermission - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - type - None
+  - controller - None
+  - action - None
+  - enabled - None
+  - policy - None
+  - role - None
+--------------------------------------------------------------------------------
+Type: UsersPermissionsRole - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - name - None
+  - description - None
+  - type - None
+  - permissions - None
+  - users - None
+--------------------------------------------------------------------------------
+Type: UsersPermissionsRoleAggregator - Kind: OBJECT
+Description: None
+Fields:
+  - count - None
+  - totalCount - None
+--------------------------------------------------------------------------------
+Type: UsersPermissionsRoleConnection - Kind: OBJECT
+Description: None
+Fields:
+  - values - None
+  - groupBy - None
+  - aggregate - None
+--------------------------------------------------------------------------------
+Type: UsersPermissionsRoleConnectionDescription - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: UsersPermissionsRoleConnectionId - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: UsersPermissionsRoleConnectionName - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: UsersPermissionsRoleConnectionType - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: UsersPermissionsRoleGroupBy - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - name - None
+  - description - None
+  - type - None
+--------------------------------------------------------------------------------
+Type: UsersPermissionsUser - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - created_at - None
+  - updated_at - None
+  - username - None
+  - email - None
+  - provider - None
+  - confirmed - None
+  - blocked - None
+  - role - None
+--------------------------------------------------------------------------------
+Type: UsersPermissionsUserAggregator - Kind: OBJECT
+Description: None
+Fields:
+  - count - None
+  - totalCount - None
+--------------------------------------------------------------------------------
+Type: UsersPermissionsUserConnection - Kind: OBJECT
+Description: None
+Fields:
+  - values - None
+  - groupBy - None
+  - aggregate - None
+--------------------------------------------------------------------------------
+Type: UsersPermissionsUserConnectionBlocked - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: UsersPermissionsUserConnectionConfirmed - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: UsersPermissionsUserConnectionCreated_at - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: UsersPermissionsUserConnectionEmail - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: UsersPermissionsUserConnectionId - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: UsersPermissionsUserConnectionProvider - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: UsersPermissionsUserConnectionRole - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: UsersPermissionsUserConnectionUpdated_at - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: UsersPermissionsUserConnectionUsername - Kind: OBJECT
+Description: None
+Fields:
+  - key - None
+  - connection - None
+--------------------------------------------------------------------------------
+Type: UsersPermissionsUserGroupBy - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - created_at - None
+  - updated_at - None
+  - username - None
+  - email - None
+  - provider - None
+  - confirmed - None
+  - blocked - None
+  - role - None
+--------------------------------------------------------------------------------
+Type: createHelpScoutBeaconPayload - Kind: OBJECT
+Description: None
+Fields:
+  - helpScoutBeacon - None
+--------------------------------------------------------------------------------
+Type: createHelpScoutConfigPayload - Kind: OBJECT
+Description: None
+Fields:
+  - helpScoutConfig - None
+--------------------------------------------------------------------------------
+Type: createHelpScoutCustomFieldPayload - Kind: OBJECT
+Description: None
+Fields:
+  - helpScoutCustomField - None
+--------------------------------------------------------------------------------
+Type: createMetadataOverridePayload - Kind: OBJECT
+Description: None
+Fields:
+  - metadataOverride - None
+--------------------------------------------------------------------------------
+Type: createRolePayload - Kind: OBJECT
+Description: None
+Fields:
+  - role - None
+--------------------------------------------------------------------------------
+Type: createUserPayload - Kind: OBJECT
+Description: None
+Fields:
+  - user - None
+--------------------------------------------------------------------------------
+Type: deleteFilePayload - Kind: OBJECT
+Description: None
+Fields:
+  - file - None
+--------------------------------------------------------------------------------
+Type: deleteHelpScoutBeaconPayload - Kind: OBJECT
+Description: None
+Fields:
+  - helpScoutBeacon - None
+--------------------------------------------------------------------------------
+Type: deleteHelpScoutConfigPayload - Kind: OBJECT
+Description: None
+Fields:
+  - helpScoutConfig - None
+--------------------------------------------------------------------------------
+Type: deleteHelpScoutCustomFieldPayload - Kind: OBJECT
+Description: None
+Fields:
+  - helpScoutCustomField - None
+--------------------------------------------------------------------------------
+Type: deleteMetadataOverridePayload - Kind: OBJECT
+Description: None
+Fields:
+  - metadataOverride - None
+--------------------------------------------------------------------------------
+Type: deleteRolePayload - Kind: OBJECT
+Description: None
+Fields:
+  - role - None
+--------------------------------------------------------------------------------
+Type: deleteUserPayload - Kind: OBJECT
+Description: None
+Fields:
+  - user - None
+--------------------------------------------------------------------------------
+Type: updateHelpScoutBeaconPayload - Kind: OBJECT
+Description: None
+Fields:
+  - helpScoutBeacon - None
+--------------------------------------------------------------------------------
+Type: updateHelpScoutConfigPayload - Kind: OBJECT
+Description: None
+Fields:
+  - helpScoutConfig - None
+--------------------------------------------------------------------------------
+Type: updateHelpScoutCustomFieldPayload - Kind: OBJECT
+Description: None
+Fields:
+  - helpScoutCustomField - None
+--------------------------------------------------------------------------------
+Type: updateMetadataOverridePayload - Kind: OBJECT
+Description: None
+Fields:
+  - metadataOverride - None
+--------------------------------------------------------------------------------
+Type: updateRolePayload - Kind: OBJECT
+Description: None
+Fields:
+  - role - None
+--------------------------------------------------------------------------------
+Type: updateUserPayload - Kind: OBJECT
+Description: None
+Fields:
+  - user - None
+--------------------------------------------------------------------------------
+Type: Morph - Kind: UNION
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: FileInfoInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: FileInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: HelpScoutBeaconInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: HelpScoutConfigInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: HelpScoutCustomFieldInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: InputID - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: LocaleInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: MetadataOverrideInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: RoleInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: UserInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: UsersPermissionsLoginInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: UsersPermissionsRegisterInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: createHelpScoutBeaconInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: createHelpScoutConfigInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: createHelpScoutCustomFieldInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: createMetadataOverrideInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: createRoleInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: createUserInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: deleteFileInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: deleteHelpScoutBeaconInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: deleteHelpScoutConfigInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: deleteHelpScoutCustomFieldInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: deleteMetadataOverrideInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: deleteRoleInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: deleteUserInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: editFileInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: editHelpScoutBeaconInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: editHelpScoutConfigInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: editHelpScoutCustomFieldInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: editLocaleInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: editMetadataOverrideInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: editRoleInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: editUserInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: updateHelpScoutBeaconInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: updateHelpScoutConfigInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: updateHelpScoutCustomFieldInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: updateMetadataOverrideInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: updateRoleInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: updateUserInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: PublicationState - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: TicketNotificationSubscriptionsResponse - Kind: OBJECT
+Description: List of subscriptions for a user's or an event's ticket notifications
+Fields:
+  - subscriptions - None
+  - totalCount - None
+--------------------------------------------------------------------------------
+Type: TicketNotificationsSubscription - Kind: OBJECT
+Description: User subscription for an event's ticket notifications
+Fields:
+  - dateUpdated - None
+  - eventId - None
+  - userId - None
+--------------------------------------------------------------------------------
+Type: SelectorsArtist - Kind: OBJECT
+Description: Selectors artist
+Fields:
+  - areas - None
+  - bookingsIncreasePercentage - None
+  - contentUrl - None
+  - followerCount - None
+  - followerIncreasePercentage - None
+  - genres - None
+  - id - None
+  - imageUrl - None
+  - isSaved - None
+  - name - None
+  - raMixOfTheDay - None
+  - raPicksCount - None
+  - raPodcast - None
+  - totalEvents - None
+  - upcomingEvents - None
+--------------------------------------------------------------------------------
+Type: SelectorsArtistArea - Kind: OBJECT
+Description: Selectors artist area
+Fields:
+  - country - None
+  - id - None
+  - name - None
+--------------------------------------------------------------------------------
+Type: SelectorsArtistCountry - Kind: OBJECT
+Description: Selectors artist country
+Fields:
+  - code - None
+  - id - None
+  - name - None
+--------------------------------------------------------------------------------
+Type: SelectorsArtistGenre - Kind: OBJECT
+Description: Selectors artist genre
+Fields:
+  - id - None
+  - name - None
+  - slug - None
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtist - Kind: OBJECT
+Description: None
+Fields:
+  - artist - None
+  - dateUpdated - None
+  - userId - None
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtistCountAggregate - Kind: OBJECT
+Description: None
+Fields:
+  - _all - None
+  - dateUpdated - None
+  - userId - None
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtistList - Kind: OBJECT
+Description: None
+Fields:
+  - artists - None
+  - dateCreated - None
+  - id - None
+  - imageUrl - None
+  - name - None
+  - savedArtistsCount - None
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtistListCountAggregate - Kind: OBJECT
+Description: None
+Fields:
+  - _all - None
+  - dateCreated - None
+  - id - None
+  - name - None
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtistListMaxAggregate - Kind: OBJECT
+Description: None
+Fields:
+  - dateCreated - None
+  - id - None
+  - name - None
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtistListMinAggregate - Kind: OBJECT
+Description: None
+Fields:
+  - dateCreated - None
+  - id - None
+  - name - None
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtistMaxAggregate - Kind: OBJECT
+Description: None
+Fields:
+  - dateUpdated - None
+  - userId - None
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtistMinAggregate - Kind: OBJECT
+Description: None
+Fields:
+  - dateUpdated - None
+  - userId - None
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtist_SavedArtistListCountAggregate - Kind: OBJECT
+Description: None
+Fields:
+  - _all - None
+  - artistId - None
+  - dateCreated - None
+  - listId - None
+  - userId - None
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtist_SavedArtistListMaxAggregate - Kind: OBJECT
+Description: None
+Fields:
+  - artistId - None
+  - dateCreated - None
+  - listId - None
+  - userId - None
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtist_SavedArtistListMinAggregate - Kind: OBJECT
+Description: None
+Fields:
+  - artistId - None
+  - dateCreated - None
+  - listId - None
+  - userId - None
+--------------------------------------------------------------------------------
+Type: SelectorsSearchFilterOptions - Kind: OBJECT
+Description: Options to filter Selectors search results
+Fields:
+  - area - None
+--------------------------------------------------------------------------------
+Type: SelectorsSearchResult - Kind: OBJECT
+Description: Selectors search result
+Fields:
+  - data - None
+  - filterOptions - None
+  - totalResults - None
+--------------------------------------------------------------------------------
+Type: SelectorsSearchTermFilterOption - Kind: OBJECT
+Description: Option to filter Selectors search results by a specific term
+Fields:
+  - count - None
+  - value - None
+--------------------------------------------------------------------------------
+Type: DateTimeFieldUpdateOperationsInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: DateTimeFilter - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: NestedDateTimeFilter - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: NestedStringFilter - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtistCreateNestedOneWithoutSavedArtist_savedArtistListsInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtistCreateOrConnectWithoutSavedArtist_savedArtistListsInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtistCreateWithoutSavedArtist_savedArtistListsInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtistListCreateInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtistListOrderByWithRelationInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtistListRelationFilter - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtistListUpdateInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtistListUserId_nameCompoundUniqueInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtistListWhereInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtistListWhereUniqueInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtistOrderByWithRelationInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtistRelationFilter - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtistUpdateOneRequiredWithoutSavedArtist_savedArtistListsNestedInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtistUpdateToOneWithWhereWithoutSavedArtist_savedArtistListsInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtistUpdateWithoutSavedArtist_savedArtistListsInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtistUpsertWithoutSavedArtist_savedArtistListsInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtistUserIdArtistIdCompoundUniqueInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtistWhereInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtistWhereUniqueInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtist_SavedArtistListCreateManySavedArtistListInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtist_SavedArtistListCreateManySavedArtistListInputEnvelope - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtist_SavedArtistListCreateNestedManyWithoutSavedArtistListInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtist_SavedArtistListCreateOrConnectWithoutSavedArtistListInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtist_SavedArtistListCreateWithoutSavedArtistListInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtist_SavedArtistListListRelationFilter - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtist_SavedArtistListOrderByRelationAggregateInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtist_SavedArtistListScalarWhereInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtist_SavedArtistListUpdateManyMutationInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtist_SavedArtistListUpdateManyWithWhereWithoutSavedArtistListInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtist_SavedArtistListUpdateManyWithoutSavedArtistListNestedInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtist_SavedArtistListUpdateWithWhereUniqueWithoutSavedArtistListInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtist_SavedArtistListUpdateWithoutSavedArtistListInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtist_SavedArtistListUpsertWithWhereUniqueWithoutSavedArtistListInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtist_SavedArtistListUserIdArtistIdListIdCompoundUniqueInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtist_SavedArtistListWhereInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtist_SavedArtistListWhereUniqueInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSearchFiltersInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSearchInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSearchQueryInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSearchRangeFilterInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSearchSortInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSearchSortValue - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSearchTermFilterInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: StringFieldUpdateOperationsInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: StringFilter - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: QueryMode - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtistListScalarFieldEnum - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSavedArtistScalarFieldEnum - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SelectorsSearchSortOrder - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SortOrder - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: AuthorizationObjectType - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - type - None
+--------------------------------------------------------------------------------
+Type: Fact - Kind: OBJECT
+Description: Represents a fact
+Fields:
+  - resource - None
+  - role - None
+  - subject - None
+--------------------------------------------------------------------------------
+Type: AuthorizationObjectInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: String - Kind: SCALAR
+Description: The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+No fields information available.
+--------------------------------------------------------------------------------
+Type: Boolean - Kind: SCALAR
+Description: The `Boolean` scalar type represents `true` or `false`.
+No fields information available.
+--------------------------------------------------------------------------------
+Type: ID - Kind: SCALAR
+Description: The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
+No fields information available.
+--------------------------------------------------------------------------------
+Type: Int - Kind: SCALAR
+Description: The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
+No fields information available.
+--------------------------------------------------------------------------------
+Type: IndexType - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: EventSubmissionSource - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: ApprovalStatusType - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: VisibilityType - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: EventRevisionApprovedStatusType - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: FeatureType - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: Locale - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: FeatureHeaderImageType - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: Language - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: IPSItemColor - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: Decimal - Kind: SCALAR
+Description: The built-in `Decimal` scalar type.
+No fields information available.
+--------------------------------------------------------------------------------
+Type: App - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: ReviewType - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: GlobalSearchType - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: TicketValidType - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: UserRegistrationSource - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: UUID - Kind: SCALAR
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: Platform - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: Date - Kind: SCALAR
+Description: The `Date` scalar represents an ISO-8601 compliant date type.
+No fields information available.
+--------------------------------------------------------------------------------
+Type: ListingAggregationType - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: PitchType - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: Byte - Kind: SCALAR
+Description: The `Byte` scalar type represents non-fractional whole numeric values. Byte can represent values between 0 and 255.
+No fields information available.
+--------------------------------------------------------------------------------
+Type: ImageType - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: MarketingSourceType - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: Long - Kind: SCALAR
+Description: The `Long` scalar type represents non-fractional signed whole 64-bit numeric values. Long can represent values between -(2^63) and 2^63 - 1.
+No fields information available.
+--------------------------------------------------------------------------------
+Type: EventRole - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: ApplyPolicy - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: Float - Kind: SCALAR
+Description: The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](http://en.wikipedia.org/wiki/IEEE_floating_point).
+No fields information available.
+--------------------------------------------------------------------------------
+Type: JSON - Kind: SCALAR
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: Query - Kind: OBJECT
+Description: None
+Fields:
+  - news - None
+  - newsArticle - None
+  - exchanges - None
+  - podcast - None
+  - podcasts - None
+  - features - None
+  - reviews - None
+  - localNews - None
+  - exchange - None
+  - label - None
+  - venue - None
+  - event - None
+  - locales - None
+  - venues - None
+  - artist - None
+  - promoter - None
+  - promoters - None
+  - genres - None
+  - feature - None
+  - ips - None
+  - microsite - None
+  - review - None
+  - multipleFeatureSeries - None
+  - singleFeatureSeries - None
+  - search - None
+  - events - None
+  - user - None
+  - contributor - None
+  - area - None
+  - areas - None
+  - country - None
+  - countries - None
+  - shareCount - None
+  - listing - None
+  - eventListings - None
+  - currency - None
+  - currencies - None
+  - warmup - None
+  - taggedLineup - None
+  - genders - None
+  - marketingCommunications - None
+  - priceWholesale - None
+  - priceRetail - None
+  - paymentUser - None
+  - paymentUsers - None
+  - metadataOverrides - None
+  - helpScoutConfigs - None
+  - ticketNotificationsSubscriptions - None
+  - ticketNotificationSubscriptions - None
+  - selectorsSearch - None
+  - selectorsArtist - None
+  - checkAuthorized - None
+  - permissions - None
+--------------------------------------------------------------------------------
+Type: Mutation - Kind: OBJECT
+Description: None
+Fields:
+  - toggleFollowVenue - None
+  - toggleFollowLabel - None
+  - toggleFollowPromoter - None
+  - toggleEventInterest - None
+  - toggleFollowArtist - None
+  - toggleFollowArtists - None
+  - registerUser - None
+  - registerUserApp - None
+  - convertGuestUser - None
+  - verifyUserEmail - None
+  - saveUserAppSettings - None
+  - saveUserPushSubscription - None
+  - pitch - None
+  - createEvent - None
+  - createEventRevision - None
+  - updateEventRevisionStatus - None
+  - sendFacebookTestEvent - None
+  - sendConversionTestEvent - None
+  - upsertTracking - None
+  - addArtistsToLineup - None
+  - removeArtistsFromLineup - None
+  - createTicketTier - None
+  - updateTicketTier - None
+  - stopTicketTierSales - None
+  - deleteTicketTier - None
+  - subscribeToAllDefaultCommunications - None
+  - updateUserMarketingCommunications - None
+  - createPromoter - None
+  - choosePromoter - None
+  - updatePromoter - None
+  - upsertSetTimes - None
+  - addQueueToEvent - None
+  - createPaymentUser - None
+  - updatePaymentUser - None
+  - makePayment - None
+  - generateAuthenticationToken - None
+  - saveTransferMethodToken - None
+  - deactivateTransferMethodToken - None
+  - createTicketNotificationsSubscription - None
+  - deleteTicketNotificationsSubscription - None
+  - createSelectorsSavedArtist - None
+  - upsertSelectorsSavedArtist - None
+  - deleteSelectorsSavedArtist - None
+  - upsertSelectorsSavedArtistList - None
+  - deleteSelectorsSavedArtistList - None
+  - createFact - None
+  - deleteFact - None
+--------------------------------------------------------------------------------
+Type: ArtistStatus - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: Short - Kind: SCALAR
+Description: The `Short` scalar type represents non-fractional signed whole 16-bit numeric values. Short can represent values between -(2^15) and 2^15 - 1.
+No fields information available.
+--------------------------------------------------------------------------------
+Type: RevisionEventArtistDto - Kind: OBJECT
+Description: None
+Fields:
+  - artistId - None
+--------------------------------------------------------------------------------
+Type: RevisionEventPromoterDto - Kind: OBJECT
+Description: None
+Fields:
+  - promoterId - None
+--------------------------------------------------------------------------------
+Type: RevisionEventImageDto - Kind: OBJECT
+Description: None
+Fields:
+  - image - None
+  - type - None
+--------------------------------------------------------------------------------
+Type: RevisionEventPlayerLinkDto - Kind: OBJECT
+Description: None
+Fields:
+  - playerLink - None
+--------------------------------------------------------------------------------
+Type: RevisionEventGenreDto - Kind: OBJECT
+Description: None
+Fields:
+  - genreId - None
+--------------------------------------------------------------------------------
+Type: Any - Kind: SCALAR
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: RevisionPlayerLinkDto - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - sourceId - None
+  - type - None
+--------------------------------------------------------------------------------
+Type: RevisionImageDto - Kind: OBJECT
+Description: None
+Fields:
+  - filename - None
+  - alt - None
+  - crop - None
+--------------------------------------------------------------------------------
+Type: UserEventType - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: PromoterFeatureType - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: NewsType - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SetTimesDto - Kind: OBJECT
+Description: None
+Fields:
+  - status - None
+  - lineup - None
+  - id - None
+--------------------------------------------------------------------------------
+Type: EventArtistsOrderByType - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: EventStatus - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: TicketTierType - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: EventTicketsQueryType - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: TrackingType - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: EventArtistDto - Kind: OBJECT
+Description: None
+Fields:
+  - artistId - None
+  - eventId - None
+--------------------------------------------------------------------------------
+Type: TrackingEntryInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: PromoterTrackingEntry - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - promoterId - None
+  - type - None
+  - code - None
+  - authToken - None
+--------------------------------------------------------------------------------
+Type: ConversionTestEventInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: FacebookTestEventInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: RegisteredUserDto - Kind: OBJECT
+Description: None
+Fields:
+  - id - None
+  - username - None
+  - email - None
+  - areaId - None
+--------------------------------------------------------------------------------
+Type: SortInputDtoInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: FilterOptionsInputDtoInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: FilterInputDtoInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: FilterSortOrderType - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: FilterSortFieldType - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: PickOrderByType - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: EventQueryType - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: ReviewContentType - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: VideoType - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: OrderByType - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: MatchFilterInputDtoInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: StringFilterInputDtoInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: BoolFilterInputDtoInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: IntFilterInputDtoInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: DateRangeFilterInputDtoInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SortValueInput - Kind: INPUT_OBJECT
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: TemplateType - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------
+Type: SetTimesStatusType - Kind: ENUM
+Description: None
+No fields information available.
+--------------------------------------------------------------------------------

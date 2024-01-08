@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 URL = 'https://ra.co/graphql'
 HEADERS = {
     'Content-Type': 'application/json',
-    'Referer': 'https://ra.co/events/uk/london',
+    'Referer': 'https://ra.co/events/de/berlin',
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:106.0) Gecko/20100101 Firefox/106.0'
 }
 QUERY_TEMPLATE_PATH = "graphql_query_template.json"
