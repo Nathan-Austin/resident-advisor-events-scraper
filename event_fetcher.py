@@ -60,6 +60,8 @@ class EventFetcher:
             print(f"Error: {response.status_code}")
             return []
 
+        #print("GraphQL Response:", data)
+
         if 'data' not in data:
             print(f"Error: {data}")
             return []
@@ -73,22 +75,48 @@ class EventFetcher:
 
         :param events: A list of events.
         """
+        print("Print Event Details method called")
+        
         for event in events:
+            print("Full event:", event)
             event_data = event["event"]
+            print("Full event data:", event_data)
+            print(f"Event ID: {event_data['id']}")
             print(f"Event name: {event_data['title']}")
             print(f"Date: {event_data['date']}")
             print(f"Start Time: {event_data['startTime']}")
             print(f"End Time: {event_data['endTime']}")
-            print(f"Artists: {[artist['name'] for artist in event_data['artists']]}")
             print(f"Venue: {event_data['venue']['name']}")
-            print(f"Event URL: {event_data['contentUrl']}")
-            print(f"Number of guests attending: {event_data['attending']}")
+            print(f"Artists: {event_data['artists']}")
+            filter_options = event.get("filterOptions", {})
+            print("Filter Options:", filter_options)
+            genre_info = filter_options.get("genre", [])
+            print("Genre Info:", genre_info)
+            genres = [genre.get('label', '') for genre in genre_info]
+            print(f"Genres: {', '.join(genres)}")
+            print(f"Event URL: {event_data.get('contentUrl', '')}")
+            print(f"Number of guests attending: {event_data.get('attending', '')}")
             print("-" * 80)
+            for artist_info in event_data.get('artists', []):
+                print(f"  - Name: {artist_info.get('name', '')}")
+                print(f"    ID: {artist_info.get('id', '')}")
+                print(f"    Country ID: {artist_info.get('countryId', '')}")
+                print(f"    Facebook: {artist_info.get('facebook', '')}")
+                print(f"    Instagram: {artist_info.get('instagram', '')}")
+                print(f"    Twitter: {artist_info.get('twitter', '')}")
+                print(f"    Soundcloud: {artist_info.get('soundcloud', '')}")
+                print(f"    Discogs: {artist_info.get('discogs', '')}")
+                print(f"    Bandcamp: {artist_info.get('bandcamp', '')}")
+                print(f"    Website: {artist_info.get('website', '')}")
+                print("-" * 40)
+            
+
 
     def fetch_and_print_all_events(self):
         """
         Fetch and print all events.
         """
+        print("Fetching and printing all events...")
         page_number = 1
 
         while True:
@@ -131,14 +159,51 @@ class EventFetcher:
         """
         with open(output_file, "w", newline="", encoding="utf-8") as file:
             writer = csv.writer(file)
-            writer.writerow(["Event name", "Date", "Start Time", "End Time", "Artists",
-                             "Venue", "Event URL", "Number of guests attending"])
+            writer.writerow([
+                "Event id", "Event name", "Date", "Start Time", "End Time",
+                "Artists", "Genres",
+                "Venue", "Event URL", "Number of guests attending",
+                "Artist ID", "Artist Country ID", "Artist Name",
+                "Artist First Name", "Artist Last Name", "Artist Facebook",
+                "Artist Instagram", "Artist Twitter", "Artist Soundcloud",
+                "Artist Discogs", "Artist Bandcamp", "Artist Website",  # Add new fields here
+            ])
 
             for event in events:
-                event_data = event["event"]
-                writer.writerow([event_data['title'], event_data['date'], event_data['startTime'],
-                                 event_data['endTime'], ', '.join([artist['name'] for artist in event_data['artists']]),
-                                 event_data['venue']['name'], event_data['contentUrl'], event_data['attending']])
+                event_data = event.get("event", {})
+                artists_info = event_data.get("artists", [])
+                filter_options = event.get("filterOptions", {})
+                genres_info = filter_options.get("genre", [])
+                
+                #print("Genres Info:", genres_info)
+
+                for artist in artists_info:
+                    writer.writerow([
+                        event_data.get('id', ''),
+                        event_data.get('title', ''),
+                        event_data.get('date', ''),
+                        event_data.get('startTime', ''),
+                        event_data.get('endTime', ''),
+                        ', '.join([artist_info.get('name', '') for artist_info in artists_info]),
+                        ', '.join([genre.get('label', '') for genre in genres_info]),
+                        event_data.get('venue', {}).get('name', ''),
+                        event_data.get('contentUrl', ''),
+                        event_data.get('attending', ''),
+                        artist.get('id', ''),
+                        artist.get('countryId', ''),
+                        artist.get('name', ''),
+                        artist.get('firstName', ''),
+                        artist.get('lastName', ''),
+                        artist.get('facebook', ''),
+                        artist.get('instagram', ''),
+                        artist.get('twitter', ''),
+                        artist.get('soundcloud', ''),
+                        artist.get('discogs', ''),
+                        artist.get('bandcamp', ''),
+                        artist.get('website', ''),
+                        # Add new fields here
+                    ])
+
 
 
 def main():
@@ -153,6 +218,8 @@ def main():
     listing_date_lte = f"{args.end_date}T23:59:59.999Z"
 
     event_fetcher = EventFetcher(args.areas, listing_date_gte, listing_date_lte)
+
+    #event_fetcher.fetch_and_print_all_events()
 
     all_events = []
     current_start_date = datetime.strptime(args.start_date, "%Y-%m-%d")
