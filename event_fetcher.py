@@ -62,6 +62,10 @@ class EventFetcher:
 
         #print("GraphQL Response:", data)
 
+        # Save response data to a JSON file
+        with open(f"response_page_{page_number}.json", "w", encoding="utf-8") as file:
+            json.dump(data, file, ensure_ascii=False, indent=2)
+
         if 'data' not in data:
             print(f"Error: {data}")
             return []
@@ -75,7 +79,12 @@ class EventFetcher:
 
         :param events: A list of events.
         """
-        print("Print Event Details method called")
+        for event_listing in events:
+            event = event_listing.get("event", {})
+            if not event:
+                continue
+
+            print("Full event:", event)
         
         for event in events:
             print("Full event:", event)
@@ -88,12 +97,9 @@ class EventFetcher:
             print(f"End Time: {event_data['endTime']}")
             print(f"Venue: {event_data['venue']['name']}")
             print(f"Artists: {event_data['artists']}")
-            filter_options = event.get("filterOptions", {})
-            print("Filter Options:", filter_options)
-            genre_info = filter_options.get("genre", [])
-            print("Genre Info:", genre_info)
-            genres = [genre.get('label', '') for genre in genre_info]
-            print(f"Genres: {', '.join(genres)}")
+            print(f"Genre Info: {event_data['genres']}")
+            
+            #print(f"Genres: {', '.join(genres)}")
             print(f"Event URL: {event_data.get('contentUrl', '')}")
             print(f"Number of guests attending: {event_data.get('attending', '')}")
             print("-" * 80)
@@ -172,11 +178,24 @@ class EventFetcher:
             for event in events:
                 event_data = event.get("event", {})
                 artists_info = event_data.get("artists", [])
-                filter_options = event.get("filterOptions", {})
-                genres_info = filter_options.get("genre", [])
-                
-                #print("Genres Info:", genres_info)
 
+                # Extract genres directly from the event_data
+                genres_info = event_data.get("genres", [])
+
+                # Print raw genres information for troubleshooting
+                print("Raw Genres Info:", genres_info)
+
+                # Extract genres from the list of genre info
+                genres = [genre.get('name', '') for genre in genres_info]
+
+                # If genres are not present, set a default value
+                if not genres:
+                    genres = ['N/A']
+
+                # Print extracted genres for troubleshooting
+                print("Extracted Genres:", genres)
+
+     
                 for artist in artists_info:
                     writer.writerow([
                         event_data.get('id', ''),
@@ -185,7 +204,7 @@ class EventFetcher:
                         event_data.get('startTime', ''),
                         event_data.get('endTime', ''),
                         ', '.join([artist_info.get('name', '') for artist_info in artists_info]),
-                        ', '.join([genre.get('label', '') for genre in genres_info]),
+                        ', '.join(genres),
                         event_data.get('venue', {}).get('name', ''),
                         event_data.get('contentUrl', ''),
                         event_data.get('attending', ''),
@@ -203,7 +222,15 @@ class EventFetcher:
                         artist.get('website', ''),
                         # Add new fields here
                     ])
+    def save_events_to_json(self, events, output_file="events.json"):
+        """
+        Save events to a JSON file.
 
+        :param events: A list of events.
+        :param output_file: The output file path. (default: "events.json")
+        """
+        with open(output_file, "w", encoding="utf-8") as file:
+            json.dump(events, file, ensure_ascii=False, indent=2)
 
 
 def main():
@@ -218,6 +245,7 @@ def main():
     listing_date_lte = f"{args.end_date}T23:59:59.999Z"
 
     event_fetcher = EventFetcher(args.areas, listing_date_gte, listing_date_lte)
+    
 
     #event_fetcher.fetch_and_print_all_events()
 
@@ -232,6 +260,8 @@ def main():
         current_start_date += timedelta(days=len(events))
 
     event_fetcher.save_events_to_csv(all_events, args.output)
+    event_fetcher.save_events_to_json(all_events, "events.json")
+    
 
 
 if __name__ == "__main__":
