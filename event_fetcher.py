@@ -239,44 +239,40 @@ class EventFetcher:
 
             unique_event_names.add(eventName)  # Add event name to the set
 
-
-            for event_info in event_data:
                 
-                    #event_data.get('id', ''),
-                    eventName = event_data.get('title', ''),
-                    eventDate = str(event_data.get('date', '')),
-                    startTime = event_data.get('startTime', ''),
-                    endTime   = event_data.get('endTime', ''),
-                    artists   = ', '.join([artist_info.get('name', '') for artist_info in artists_info]),
-                    genres_str    = ', '.join(genres),
-                    clubName  = event_data.get('venue', {}).get('name', ''),
-                    popularity= event_data.get('attending', ''),
-                    clubAddress = event_data.get('venue', {}).get('address', ''),
-                    price     = event_data.get('cost', '')          
-                    eventDate = event_data.get('date', '').split('T')[0]
-                    startTime = event_data.get('startTime', '').split('T')[1].split('.')[0]
-                    endTime = event_data.get('endTime', '').split('T')[1].split('.')[0]
-
-
-                    query = sql.SQL("""INSERT INTO event_data (
-                                        event_name, club_name, club_address,
-                                        event_date, start_time, end_time, artists, popularity, price, event_genres
-                                    ) VALUES (
-                                        {eventName}, {clubName}, {clubAddress}, {eventDate}, {startTime},
-                                        {endTime}, {artists}, {popularity}, {price}, {genres}
-                                    )ON CONFLICT (event_name) DO NOTHING;""").format(
-                            eventName=sql.Literal(eventName),
-                            clubName=sql.Literal(clubName),
-                            clubAddress=sql.Literal(clubAddress),
-                            eventDate=sql.Literal(eventDate),
-                            startTime=sql.Literal(startTime),
-                            endTime=sql.Literal(endTime),
-                            artists=sql.SQL("ARRAY[{}]::TEXT[]").format(sql.Literal(artists)),
-                            popularity=sql.Literal(popularity),
-                            price=sql.Literal(price),
-                            genres=sql.SQL("ARRAY[{}]::TEXT[]").format(sql.Literal(genres_str))
-                            )
-                    
+            #event_data.get('id', ''),
+            eventName = event_data.get('title', ''),
+            eventDate = str(event_data.get('date', '')),
+            startTime = event_data.get('startTime', ''),
+            endTime   = event_data.get('endTime', ''),
+            artists   = ', '.join([artist_info.get('name', '') for artist_info in artists_info]),
+            genres_str    = ', '.join(genres),
+            clubName  = event_data.get('venue', {}).get('name', ''),
+            popularity= event_data.get('attending', ''),
+            clubAddress = event_data.get('venue', {}).get('address', ''),
+            price     = event_data.get('cost', '')          
+            eventDate = event_data.get('date', '').split('T')[0]
+            startTime = event_data.get('startTime', '').split('T')[1].split('.')[0]
+            endTime = event_data.get('endTime', '').split('T')[1].split('.')[0
+            query = sql.SQL("""INSERT INTO event_data (
+                                event_name, club_name, club_address,
+                                event_date, start_time, end_time, artists, popularity, price, event_genres
+                            ) VALUES (
+                                {eventName}, {clubName}, {clubAddress}, {eventDate}, {startTime},
+                                {endTime}, {artists}, {popularity}, {price}, {genres}
+                            )ON CONFLICT (event_name) DO NOTHING;""").format(
+                    eventName=sql.Literal(eventName),
+                    clubName=sql.Literal(clubName),
+                    clubAddress=sql.Literal(clubAddress),
+                    eventDate=sql.Literal(eventDate),
+                    startTime=sql.Literal(startTime),
+                    endTime=sql.Literal(endTime),
+                    artists=sql.SQL("ARRAY[{}]::TEXT[]").format(sql.Literal(artists)),
+                    popularity=sql.Literal(popularity),
+                    price=sql.Literal(price),
+                    genres=sql.SQL("ARRAY[{}]::TEXT[]").format(sql.Literal(genres_str))
+                    )
+            
                     #print(query)
                     commit_to_dataBase(query)
     
