@@ -1,2 +1,4 @@
 venvs
 *.csv
+.env
+*.ini

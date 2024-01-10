@@ -5,6 +5,8 @@ import csv
 import sys
 import argparse
 from datetime import datetime, timedelta
+from utils import commit_to_dataBase
+from psycopg2 import sql
 
 URL = 'https://ra.co/graphql'
 HEADERS = {
@@ -63,8 +65,8 @@ class EventFetcher:
         #print("GraphQL Response:", data)
 
         # Save response data to a JSON file
-        with open(f"response_page_{page_number}.json", "w", encoding="utf-8") as file:
-            json.dump(data, file, ensure_ascii=False, indent=2)
+        #with open(f"response_page_{page_number}.json", "w", encoding="utf-8") as file:
+            #json.dump(data, file, ensure_ascii=False, indent=2)
 
         if 'data' not in data:
             print(f"Error: {data}")
@@ -98,8 +100,6 @@ class EventFetcher:
             print(f"Venue: {event_data['venue']['name']}")
             print(f"Artists: {event_data['artists']}")
             print(f"Genre Info: {event_data['genres']}")
-            
-            #print(f"Genres: {', '.join(genres)}")
             print(f"Event URL: {event_data.get('contentUrl', '')}")
             print(f"Number of guests attending: {event_data.get('attending', '')}")
             print("-" * 80)
@@ -178,24 +178,13 @@ class EventFetcher:
             for event in events:
                 event_data = event.get("event", {})
                 artists_info = event_data.get("artists", [])
-
-                # Extract genres directly from the event_data
                 genres_info = event_data.get("genres", [])
-
-                # Print raw genres information for troubleshooting
-                print("Raw Genres Info:", genres_info)
-
-                # Extract genres from the list of genre info
                 genres = [genre.get('name', '') for genre in genres_info]
 
-                # If genres are not present, set a default value
                 if not genres:
                     genres = ['N/A']
 
-                # Print extracted genres for troubleshooting
-                print("Extracted Genres:", genres)
-
-     
+    
                 for artist in artists_info:
                     writer.writerow([
                         event_data.get('id', ''),
@@ -222,6 +211,123 @@ class EventFetcher:
                         artist.get('website', ''),
                         # Add new fields here
                     ])
+
+
+
+    def save_events_to_postgres(self, events):
+        """
+        Export event data to postgres
+
+        :param events: A list of events.
+        
+        """
+        """     "Event id", "Event name", "Date", "Start Time", "End Time",
+                "Artists", "Genres", "Venue", "Event URL", "Number of guests attending",
+        """
+        unique_event_names = set()  # Keep track of unique event names
+
+        for event in events:
+            event_data = event.get("event", {})
+            artists_info = event_data.get("artists", [])
+            genres_info = event_data.get("genres", [])
+            genres = [genre.get('name', '') for genre in genres_info]
+
+            eventName = event_data.get('title', '')
+                    # Check if the event name is already in the set, if so, skip this event
+            if eventName in unique_event_names:
+                continue
+
+            unique_event_names.add(eventName)  # Add event name to the set
+
+
+            for event_info in event_data:
+                
+                    #event_data.get('id', ''),
+                    eventName = event_data.get('title', ''),
+                    eventDate = str(event_data.get('date', '')),
+                    startTime = event_data.get('startTime', ''),
+                    endTime   = event_data.get('endTime', ''),
+                    artists   = ', '.join([artist_info.get('name', '') for artist_info in artists_info]),
+                    genres_str    = ', '.join(genres),
+                    clubName  = event_data.get('venue', {}).get('name', ''),
+                    popularity= event_data.get('attending', ''),
+                    clubAddress = event_data.get('venue', {}).get('address', ''),
+                    price     = event_data.get('cost', '')          
+                    eventDate = event_data.get('date', '').split('T')[0]
+                    startTime = event_data.get('startTime', '').split('T')[1].split('.')[0]
+                    endTime = event_data.get('endTime', '').split('T')[1].split('.')[0]
+
+
+                    query = sql.SQL("""INSERT INTO event_data (
+                                        event_name, club_name, club_address,
+                                        event_date, start_time, end_time, artists, popularity, price, event_genres
+                                    ) VALUES (
+                                        {eventName}, {clubName}, {clubAddress}, {eventDate}, {startTime},
+                                        {endTime}, {artists}, {popularity}, {price}, {genres}
+                                    )ON CONFLICT (event_name) DO NOTHING;""").format(
+                            eventName=sql.Literal(eventName),
+                            clubName=sql.Literal(clubName),
+                            clubAddress=sql.Literal(clubAddress),
+                            eventDate=sql.Literal(eventDate),
+                            startTime=sql.Literal(startTime),
+                            endTime=sql.Literal(endTime),
+                            artists=sql.SQL("ARRAY[{}]::TEXT[]").format(sql.Literal(artists)),
+                            popularity=sql.Literal(popularity),
+                            price=sql.Literal(price),
+                            genres=sql.SQL("ARRAY[{}]::TEXT[]").format(sql.Literal(genres_str))
+                            )
+                    
+                    #print(query)
+                    commit_to_dataBase(query)
+    
+    def save_artists_to_postgres(self, events):   
+        """
+        Export event data to postgres
+
+        :param events: A list of events.
+        
+        """
+        """       
+            "Artist ID", "Artist Country ID", "Artist Name",
+            "Artist First Name", "Artist Last Name", "Artist Facebook",
+            "Artist Instagram", "Artist Twitter", "Artist Soundcloud",
+            "Artist Discogs", "Artist Bandcamp", "Artist Website", 
+        """                           
+        for event in events:
+            event_data = event.get("event", {})
+            artists_info = event_data.get("artists", [])
+            genres_info = event_data.get("genres", [])
+            genres = [genre.get('name', '') for genre in genres_info]
+
+            for artist in artists_info:
+                artistName = artist.get('name', '')
+                facebook = artist.get('facebook', '')
+                instagram = artist.get('instagram', '')
+                soundcloud = artist.get('soundcloud', '')
+                discogs = artist.get('discogs', '')
+                bandcamp = artist.get('bandcamp', '')
+                website = artist.get('website', '')
+
+                query2 = sql.SQL("""INSERT INTO artists (
+                                    artist_name, facebook_link, instagram_link, genres, soundcloud_link, bandcamp_link, website, other_link
+                                ) VALUES (
+                                    {artistName}, {facebook}, {instagram}, ARRAY[{genres}], {soundcloud}, {bandcamp}, {website}, {discogs}
+                                )ON CONFLICT (artist_name) DO NOTHING;""").format(
+                    artistName=sql.Literal(artistName),
+                    facebook=sql.Literal(facebook),
+                    instagram=sql.Literal(instagram),
+                    genres=sql.SQL("ARRAY[{}]::TEXT[]").format(sql.Literal(genres)),
+                    soundcloud=sql.Literal(soundcloud),
+                    bandcamp=sql.Literal(bandcamp),
+                    website=sql.Literal(website),
+                    discogs=sql.Literal(discogs)
+                )
+                            #print(query2)
+                commit_to_dataBase(query2)
+                     
+
+   
+   
     def save_events_to_json(self, events, output_file="events.json"):
         """
         Save events to a JSON file.
@@ -259,10 +365,10 @@ def main():
         all_events.extend(events)
         current_start_date += timedelta(days=len(events))
 
-    event_fetcher.save_events_to_csv(all_events, args.output)
-    event_fetcher.save_events_to_json(all_events, "events.json")
-    
-
+    #event_fetcher.save_events_to_csv(all_events, args.output)
+    #event_fetcher.save_events_to_json(all_events, "events.json")
+    event_fetcher.save_events_to_postgres(all_events)
+    event_fetcher.save_artists_to_postgres(all_events)
 
 if __name__ == "__main__":
     main()
