@@ -152,47 +152,46 @@ def extract_from_dataBase(query):
     return artdict
 
 
-def name_cleaner(djs_):
-    """ cleans unwanted words and icons from names scraped"""
-    djList = []
-    name = re.sub('\\n', ',', djs_[0])
-    name = re.sub(r'\broom|ROOM\,\b', 'room:,', name)
-    name = re.sub('(\\xa0)', '', name)
-    name = re.sub(r'\bTBA|tba\b', '', name)
-    name = re.sub('(noch nicht fetsgelegt)', '', name)
-    name = re.sub('(b2b|B2B)', ',', name)
-    name = re.sub('(MUSIC|music)', '', name)
-    name = re.sub(r'\b(Friends|friends)\b', '', name)
-    name = re.sub(r'\b(opening|Opening|OPENING)\b', '', name)
-    name = re.sub(r'\b(closing|Closing|CLOSING)\b', '', name)
-    name = re.sub(r'\b(FRITAG|SAMSTAG|SONNTAG|MONTAG)\b', '', name)
-    name = re.sub(r'\bResidents|residents\b', '', name)
-    name = re.sub(r'\bResident|resident\b', '', name)
-    name = re.sub(r'\b(\d\d\s\-\d\d)\b', '', name)
-    name = re.sub(r'\b(\d\d\-\d\d)\b', '', name)
-    name = re.sub(r'\b(\d\d\|\d\d)\b', '', name)
-    name = re.sub(r'\b(\d\d\-\s\d\d)\b', '', name)
-    name = re.sub(r'(\_{2}[a-zA-Z]*\_{2})', '', name)
-    name = re.sub(r'\blive|LIVE|Live\b', ',', name)
-    name = re.sub("\(.*?\)", ',', name)
-    name = re.sub(r'\&', ',', name)
-    name = re.sub(r'\[.*?\]', '', name)
-    name = re.sub('[\s\w]+\:', '', name)
-    name = re.sub('\/{2}', ',', name)
-    name = re.sub('\,{2}', ',', name)
-    name = re.sub('\,{2}', ',', name)
-    name = re.sub(r'\'{2},', '', name)
-    name = re.sub('^,', '', name)
-    name = re.sub('^\s', '', name)
-    name = re.sub('\s$', '', name)
-    name = re.sub(r'\bb2b|B2B\b', ',', name)
-    name = re.sub('w\/|W\/', ',', name)
-    name = re.sub('\+', ',', name)
-    name = re.sub('\&', ',', name)  # & symbol, replace with ','
-    name = re.sub('[,\s]*$', '', name)  # white space & comma from end of string
-    name = re.sub('^@', '', name)  # @ from beginning of str
-    djList = name.split(',')
-    return djList
+def name_cleaner(name):
+    """Cleans unwanted words and icons from names scraped"""
+    
+    if pd.notnull(name):
+        name = re.sub('\\n', ',', name)
+        name = re.sub(r'\broom|ROOM\b', 'room:,', name)
+        name = re.sub('(\\xa0)', '', name)
+        name = re.sub(r'\bTBA|tba\b', '', name)
+        name = re.sub('(noch nicht fetsgelegt)', '', name)
+        name = re.sub(r'\b(Friends|friends)\b', '', name)
+        name = re.sub(r'\b(opening|Opening|OPENING)\b', '', name)
+        name = re.sub(r'\b(closing|Closing|CLOSING)\b', '', name)
+        name = re.sub(r'\bResidents|residents\b', '', name)
+        name = re.sub(r'\bResident|resident\b', '', name)
+        name = re.sub(r'\b(\d\d\s\-\d\d)\b', '', name)
+        name = re.sub(r'\b(\d\d\-\d\d)\b', '', name)
+        name = re.sub(r'\b(\d\d\-\s\d\d)\b', '', name)
+        name = re.sub(r'(\_{2}[a-zA-Z]*\_{2})', '', name)
+        name = re.sub(r'\blive|LIVE|Live\b', ',', name)
+        name = re.sub(r"\(.*?\)", ',', name)
+        name = re.sub(r'\&', ',', name)
+        name = re.sub(r'\[.*?\]', '', name)
+        name = re.sub(r'[\s\w]+\:', '', name)
+        name = re.sub(r'\/{2}', ',', name)
+        name = re.sub(r'\,{2}', ',', name)
+        name = re.sub(r'\,{2}', ',', name)
+        name = re.sub(r'\'{2},', '', name)
+        name = re.sub(r'^,', '', name)
+        name = re.sub(r'^\s', '', name)
+        name = re.sub(r'\s$', '', name)
+        name = re.sub(r'\b\d{2}\b', '', name)
+        name = re.sub(r'\bb2b|B2B\b', ',', name)
+        name = re.sub(r'w\/', ',', name)
+        name = re.sub(r'\+', ',', name)
+        name = re.sub(r'\&', ',', name)  # & symbol, replace with ','
+        name = re.sub(r'[,\s]*$', '', name)  # white space & comma from end of string
+        name = re.sub(r'^@', '', name)  # @ from the beginning of str
+        djList = name.split(',')
+        return name
+    return ''
 
 def clean_names(names):
     cleaned_names = []

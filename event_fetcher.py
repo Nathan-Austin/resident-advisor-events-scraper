@@ -5,7 +5,7 @@ import csv
 import sys
 import argparse
 from datetime import datetime, timedelta
-from utils import commit_to_dataBase
+from utils import commit_to_dataBase, name_cleaner
 from psycopg2 import sql
 
 URL = 'https://ra.co/graphql'
@@ -253,7 +253,7 @@ class EventFetcher:
             price     = event_data.get('cost', '')          
             eventDate = event_data.get('date', '').split('T')[0]
             startTime = event_data.get('startTime', '').split('T')[1].split('.')[0]
-            endTime = event_data.get('endTime', '').split('T')[1].split('.')[0
+            endTime = event_data.get('endTime', '').split('T')[1].split('.')[0]
             query = sql.SQL("""INSERT INTO event_data (
                                 event_name, club_name, club_address,
                                 event_date, start_time, end_time, artists, popularity, price, event_genres
@@ -274,7 +274,7 @@ class EventFetcher:
                     )
             
                     #print(query)
-                    commit_to_dataBase(query)
+            commit_to_dataBase(query)
     
     def save_artists_to_postgres(self, events):   
         """
@@ -296,7 +296,7 @@ class EventFetcher:
             genres = [genre.get('name', '') for genre in genres_info]
 
             for artist in artists_info:
-                artistName = artist.get('name', '')
+                artistName = name_cleaner(artist.get('name', ''))
                 facebook = artist.get('facebook', '')
                 instagram = artist.get('instagram', '')
                 soundcloud = artist.get('soundcloud', '')
@@ -309,7 +309,7 @@ class EventFetcher:
                                 ) VALUES (
                                     {artistName}, {facebook}, {instagram}, ARRAY[{genres}], {soundcloud}, {bandcamp}, {website}, {discogs}
                                 )ON CONFLICT (artist_name) DO NOTHING;""").format(
-                    artistName=sql.Literal(artistName),
+                    artistName=sql.Literal(artistName[0] if artistName else ''),
                     facebook=sql.Literal(facebook),
                     instagram=sql.Literal(instagram),
                     genres=sql.SQL("ARRAY[{}]::TEXT[]").format(sql.Literal(genres)),
@@ -340,7 +340,7 @@ def main():
     parser.add_argument("areas", type=int, help="The area code to filter events.")
     parser.add_argument("start_date", type=str, help="The start date for event listings (inclusive, format: YYYY-MM-DD).")
     parser.add_argument("end_date", type=str, help="The end date for event listings (inclusive, format: YYYY-MM-DD).")
-    parser.add_argument("-o", "--output", type=str, default="events.csv", help="The output file path (default: events.csv).")
+    #parser.add_argument("-o", "--output", type=str, default="events.csv", help="The output file path (default: events.csv).")
     args = parser.parse_args()
 
     listing_date_gte = f"{args.start_date}T00:00:00.000Z"
